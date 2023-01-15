@@ -25,11 +25,11 @@
         "icon": "waveform",
         "multiWidget": {
             "zones": {
-                "active": "Active",
-                "type": "Type",
-                "frequency": "Frequency",
-                "gain": "Gain",
-                "q": "Q"
+                "active": { "label": "Active", "count": 6 },
+                "type": { "label": "Type", "count": 6 },
+                "frequency": { "label": "Frequency", "count": 6 },
+                "gain": { "label": "Gain", "count": 6 },
+                "q": { "label": "Q", "count": 6 }
             }
         }
     },
