@@ -59,7 +59,7 @@ export class MyElement extends LitElement {
         // process using matrix transform
         const cursorPt = new DOMPoint(x, y).matrixTransform(this.svg.getScreenCTM()!.inverse());
         if (this.currentlyDragging === this.thresholdHandle) {
-            this.threshold = Math.min(1, Math.max(0, 1 - (cursorPt.y / 100)));
+            this.threshold = Math.min(this.gain, Math.max(0, 1 - (cursorPt.y / 100)));
             this.dispatchEvent(new CustomEvent("valueChange", { detail: { index: 0, value: this.threshold, zone: "dynamics"} }));
         } else {
             this.gain = Math.min(1, Math.max(this.threshold, 1 - (cursorPt.y / 100)));
