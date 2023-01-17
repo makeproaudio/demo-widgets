@@ -167,11 +167,11 @@ export class MyElement extends LitElement {
                         ${this.value}<br>
                         ${this.metadata.label}
                     </div>
-                    <button class="btn m-1 ab ${this.a ? "active" : ""}" @mousedown=${() => this.a = !this.a} @touchstart=${() => this.a = !this.a}>${this.a ? "A" : "B"}</button>
-                    <button class="btn m-1 isolate ${this.isolate ? "active" : ""}" @mousedown=${() => this.isolate = !this.isolate} @touchstart=${() => this.isolate = !this.isolate}>ISOLATE</button>
-                    <button class="btn m-1 rec ${this.rec ? "active" : ""}" @mousedown=${() => this.rec = !this.rec} @touchstart=${() => this.rec = !this.rec}>REC</button>
-                    <button class="btn m-1 afl ${this.afl ? "active" : ""}" @mousedown=${() => this.afl = !this.afl} @touchstart=${() => this.afl = !this.afl}>${this.afl ? "AFL" : "PFL"}</button>
-                    <button class="btn m-1 spill ${this.spill ? "active" : ""}" @mousedown=${() => this.spill = !this.spill} @touchstart=${() => this.spill = !this.spill}>SPILL</button>
+                    <button class="btn m-1 ab ${this.a ? "active" : ""}" @mousedown=${() => this.a = !this.a} @touchstart=${(event) => {this.a = !this.a; event?.preventDefault()}}>${this.a ? "A" : "B"}</button>
+                    <button class="btn m-1 isolate ${this.isolate ? "active" : ""}" @mousedown=${() => this.isolate = !this.isolate} @touchstart=${(event) => {this.isolate = !this.isolate; event?.preventDefault()}}>ISOLATE</button>
+                    <button class="btn m-1 rec ${this.rec ? "active" : ""}" @mousedown=${() => this.rec = !this.rec} @touchstart=${(event) => {this.rec = !this.rec; event?.preventDefault()}}>REC</button>
+                    <button class="btn m-1 afl ${this.afl ? "active" : ""}" @mousedown=${() => this.afl = !this.afl} @touchstart=${(event) => {this.afl = !this.afl; event?.preventDefault()}}>${this.afl ? "AFL" : "PFL"}</button>
+                    <button class="btn m-1 spill ${this.spill ? "active" : ""}" @mousedown=${() => this.spill = !this.spill} @touchstart=${(event) => {this.spill = !this.spill; event?.preventDefault()}}>SPILL</button>
                 </div>
             </div>
         `;
