@@ -68,6 +68,7 @@ export class MyElement extends LitElement {
             border: 1px solid #000;
             padding: 5px;
             height: 100%;
+            color: #000;
         }
 
         .ab { background-color: #888800; }
