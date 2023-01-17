@@ -70,7 +70,6 @@ export class MyElement extends LitElement {
 
     public firstUpdated() {
         super.connectedCallback();
-        console.log('connectedCallback', this.parent)
         this.picker = new SimplePicker({
             el: this.parent,
             color: this.value,
@@ -80,7 +79,6 @@ export class MyElement extends LitElement {
         this.picker.onChange((color: string) => {
             this._value = [this.picker.getRGB().r, this.picker.getRGB().g, this.picker.getRGB().b]
             const value = (rgbToHsl(color) + 2147483648) / 4294967295;
-            console.log(value, this.picker.getRGB());
             const sendUpdate = () => this.dispatchEvent(new CustomEvent('valueChange', { detail: value }));
             if (timeout) {
                 needsAnotherUpdate = true;
