@@ -78,8 +78,12 @@ export class MyElement extends LitElement {
             <svg viewBox="-10 -10 120 120" id="svgParent">
                 <line x1="${(0.5 - this.threshold) * 100}" y1="100" x2="50" y2="${(1 - this.threshold) * 100}" stroke-linecap="round" stroke="orange" stroke-width=".8" />
                 <line x1="50" y1="${(1 - this.threshold) * 100}" x2="100" y2="${(1 - this.gain) * 100}" stroke-linecap="round" stroke="orange" stroke-width=".8" />
-                <circle id="thresholdHandle" class="draggable" cx="50" cy="${(1 - this.threshold) * 100}" r="5" stroke="gray" fill="transparent" stroke-width=".8"/>
-                <circle id="gainHandle" class="draggable" cx="100" cy="${(1 - this.gain) * 100}" r="5" stroke="gray" fill="transparent" stroke-width=".8"/>
+
+                <circle cx="50" cy="${(1 - this.threshold) * 100}" r="5" fill="transparent" stroke="gray" stroke-width=".8"/>
+                <circle id="thresholdHandle" class="draggable" cx="50" cy="${(1 - this.threshold) * 100}" r="20" fill="transparent" stroke-width=".8"/>
+
+                <circle cx="100" cy="${(1 - this.gain) * 100}" r="5" fill="transparent" stroke="gray" stroke-width=".8"/>
+                <circle id="gainHandle" class="draggable" cx="100" cy="${(1 - this.gain) * 100}" r="20" fill="transparent" stroke-width=".8"/>
             </svg>
         `;
     }
