@@ -1,0 +1,37 @@
+{
+    "name": "@makepro-x/demo-widget-xy",
+    "version": "1.0.0",
+    "main": "dist/index.js",
+    "license": "MIT",
+    "author": {
+        "name": "MakeProAudio GmbH"
+    },
+    "dependencies": {
+        "lit": "^2.5.0"
+    },
+    "devDependencies": {
+        "esbuild": "^0.16.9"
+    },
+    "scripts": {
+        "build": "esbuild --bundle --minify --target=es2020 --format=esm --outdir=dist src/index.ts",
+        "prepare": "npm run build"
+    },
+    "glue": {
+        "apiVersion": 1,
+        "type": "ui-widget",
+        "tagName": "guw-demo-xy",
+        "displayName": "XY",
+        "icon": "crosshairs",
+        "multiWidget": {
+            "zones": {
+                "xy": {
+                    "label": "XY",
+                    "count": 2
+                }
+            }
+        }
+    },
+    "files": [
+        "dist"
+    ]
+}
