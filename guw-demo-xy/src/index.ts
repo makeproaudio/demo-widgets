@@ -75,14 +75,14 @@ export class MyElement extends LitElement {
                 <rect x="0" y="0" width="100" height="100" fill="transparent" stroke="#80808080" stroke-width=".8"/>
 
                 <!-- dotted lines cented on the rect (x and y) -->
-                <line x1="0" y1="50" x2="100" y2="50" stroke="#80808080" stroke-width=".8" stroke-dasharray="2,2"/>
-                <line x1="50" y1="0" x2="50" y2="100" stroke="#80808080" stroke-width=".8" stroke-dasharray="2,2"/>
+                <line x1="0" y1="50" x2="100" y2="50" stroke="#80808080" stroke-dashoffset="1" stroke-width=".8" stroke-dasharray="2,2"/>
+                <line x1="50" y1="0" x2="50" y2="100" stroke="#80808080" stroke-dashoffset="1" stroke-width=".8" stroke-dasharray="2,2"/>
 
                 <!-- dotted lines for the 4 quadrants, each one vertical and horizontal -->
-                <line x1="25" y1="0" x2="25" y2="100" stroke="#80808080" stroke-width=".5" stroke-dasharray="1,4"/>
-                <line x1="75" y1="0" x2="75" y2="100" stroke="#80808080" stroke-width=".5" stroke-dasharray="1,4"/>
-                <line x1="0" y1="25" x2="100" y2="25" stroke="#80808080" stroke-width=".5" stroke-dasharray="1,4"/>
-                <line x1="0" y1="75" x2="100" y2="75" stroke="#80808080" stroke-width=".5" stroke-dasharray="1,4"/>
+                <line x1="25" y1="0" x2="25" y2="100" stroke="#80808080" stroke-dashoffset="-2" stroke-width=".5" stroke-dasharray="1,4"/>
+                <line x1="75" y1="0" x2="75" y2="100" stroke="#80808080" stroke-dashoffset="-2" stroke-width=".5" stroke-dasharray="1,4"/>
+                <line x1="0" y1="25" x2="100" y2="25" stroke="#80808080" stroke-dashoffset="-2" stroke-width=".5" stroke-dasharray="1,4"/>
+                <line x1="0" y1="75" x2="100" y2="75" stroke="#80808080" stroke-dashoffset="-2" stroke-width=".5" stroke-dasharray="1,4"/>
 
                 <circle cx="${this.x * 100}" cy="${this.y * 100}" r="5" fill="transparent" stroke="orange" stroke-width=".8"/>
                 <circle cx="${this.x * 100}" cy="${this.y * 100}" r="1" fill="orange" />
