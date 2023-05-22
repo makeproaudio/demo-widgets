@@ -12,6 +12,8 @@ import "./weq8-ui-filter-row";
 
 type Zone = { value: any; metadata: Record<string, any>; }[];
 
+const handleTouchAreaWidth = 60;
+
 @customElement("guw-demo-eq")
 export class WEQ8UIElement extends LitElement {
   static styles = [
@@ -97,10 +99,11 @@ export class WEQ8UIElement extends LitElement {
         position: absolute;
         top: 0;
         left: 0;
-        width: 20px;
-        height: 20px;
+        width: ${handleTouchAreaWidth}px;
+        height: ${handleTouchAreaWidth}px;
         border-radius: 50%;
-        background-color: #fff;
+        --bg-color: #fff;
+        background: radial-gradient( 30px 30px at 30px 30px, var(--bg-color) 33%, transparent 33% );
         color: black;
         transform: translate(-50%, -50%);
         display: flex;
@@ -111,10 +114,10 @@ export class WEQ8UIElement extends LitElement {
         transition: background-color 0.15s ease;
       }
       .filter-handle.selected {
-        background: #ffcc00;
+        --bg-color: #ffcc00;
       }
       .filter-handle.bypassed {
-        background: #7d7d7d;
+        --bg-color: #7d7d7d;
       }
     `,
   ];
@@ -149,7 +152,7 @@ export class WEQ8UIElement extends LitElement {
   private gridXs: number[] = [];
 
   @state()
-  private dragStates: { [filterIdx: number]: number | null } = {};
+  private dragStates: { [filterIdx: number]: {pointerId: number, offset: {x: number, y: number}} | null } = {};
 
   @state()
   private selectedFilterIdx = -1;
@@ -362,20 +365,29 @@ export class WEQ8UIElement extends LitElement {
 
   private startDraggingFilterHandle(evt: PointerEvent, idx: number) {
     (evt.target as Element).setPointerCapture(evt.pointerId);
-    this.dragStates = { ...this.dragStates, [idx]: evt.pointerId };
+    this.dragStates = {
+      ...this.dragStates,
+      [idx]: {
+        pointerId: evt.pointerId,
+        offset: {
+          x: evt.offsetX - (handleTouchAreaWidth / 2),
+          y: evt.offsetY - (handleTouchAreaWidth / 2),
+        },
+      }
+    };
     this.selectedFilterIdx = idx;
     evt.preventDefault();
   }
 
   private stopDraggingFilterHandle(evt: PointerEvent, idx: number) {
-    if (this.dragStates[idx] === evt.pointerId) {
+    if (this.dragStates[idx]?.pointerId === evt.pointerId) {
       (evt.target as Element).releasePointerCapture(evt.pointerId);
       this.dragStates = { ...this.dragStates, [idx]: null };
     }
   }
 
   private dragFilterHandle(evt: PointerEvent, idx: number) {
-    if (this.runtime && this.dragStates[idx] === evt.pointerId) {
+    if (this.runtime && this.dragStates[idx]?.pointerId === evt.pointerId) {
       let filterType = this.runtime.spec[idx].type;
       let canvasBounds =
         this.frequencyResponseCanvas?.getBoundingClientRect() ?? {
@@ -384,8 +396,8 @@ export class WEQ8UIElement extends LitElement {
           width: 0,
           height: 0,
         };
-      let pointerX = evt.clientX - canvasBounds.left;
-      let pointerY = evt.clientY - canvasBounds.top;
+      let pointerX = evt.clientX - canvasBounds.left - (this.dragStates[idx]?.offset.x ?? 0);
+      let pointerY = evt.clientY - canvasBounds.top - (this.dragStates[idx]?.offset.y ?? 0);
       let pointerFreq = toLin(
         pointerX / canvasBounds.width,
         10,
