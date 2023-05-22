@@ -10,6 +10,10 @@ export class MyElement extends LitElement {
         .draggable {
             cursor: move;
         }
+        svg {
+            max-width: 100%;
+            max-height: 100%;
+        }
     `;
     @state()
     private x = 0.5;
